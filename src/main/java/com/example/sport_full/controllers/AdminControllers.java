@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @RequestMapping("/admin")
 public class AdminControllers {
