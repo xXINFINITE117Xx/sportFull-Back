@@ -76,6 +76,7 @@ public class AdminControllers {
     }
 
 
+    @CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
     @PatchMapping("/update/{id}")
     public ResponseEntity<UserModels> patchUpdateAdmin(@PathVariable("id") Long userId, @RequestBody UserModels userModels) {
         Optional<UserModels> existingUserOpt = userRepository.findById(userId);
