@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
-@CrossOrigin(origins = "https://spontaneous-marshmallow-6b9479.netlify.app")
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @RequestMapping("/reservas")
 public class ReservationsControllers {

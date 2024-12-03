@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-@CrossOrigin(origins = "https://spontaneous-marshmallow-6b9479.netlify.app")
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @Service
 public class VerificationEmailControllers {
