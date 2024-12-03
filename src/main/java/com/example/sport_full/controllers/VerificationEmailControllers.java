@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
-@Service
 public class VerificationEmailControllers {
     @Autowired
     private VerificationsEmailServices userService;
