@@ -98,7 +98,7 @@ public class PagoController {
 
         // Redirigir al frontend
         return ResponseEntity.status(HttpStatus.FOUND)
-                .header("Location", "http://localhost:5173/HistorialCliente")
+                .header("Location", "https://magnificent-cajeta-379fff.netlify.app/HistorialCliente")
                 .build();
     }
 
