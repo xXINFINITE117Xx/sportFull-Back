@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @RequestMapping("/security")
 public class ChangePasswordControllers {
 
     @Autowired
     IUserRepository userRepository;
-
 
 
     @PostMapping

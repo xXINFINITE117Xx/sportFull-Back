@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @RequestMapping
 public class VerificationEmailControllers {

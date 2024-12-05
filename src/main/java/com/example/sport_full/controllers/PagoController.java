@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 
+@CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
 @RequestMapping("/api/pagos")
 public class PagoController {
