@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -114,6 +115,12 @@ public class AdminControllers {
 
                 if (adminModels.getNIT() != null) {
                     existingAdminModels.setNIT(adminModels.getNIT());
+                }
+                if (existingAdminModels.getServiciosGenerales() == null) {
+                    existingAdminModels.setServiciosGenerales(new ArrayList<>());
+                }
+                if (existingAdminModels.getDiasApertura() == null) {
+                    existingAdminModels.setDiasApertura(new ArrayList<>());
                 }
 
                 if (adminModels.getNombreEmpresa() != null) {
