@@ -105,8 +105,15 @@ public class AdminControllers {
             if (userModels.getAdminModels() != null) {
                 AdminModels adminModels = userModels.getAdminModels();
 
+                // Inicializar AdminModels si es nulo
+                if (existingUser.getAdminModels() == null) {
+                    existingUser.setAdminModels(new AdminModels());
+                }
+
+                AdminModels existingAdminModels = existingUser.getAdminModels();
+
                 if (adminModels.getNIT() != null) {
-                    existingUser.getAdminModels().setNIT(adminModels.getNIT());
+                    existingAdminModels.setNIT(adminModels.getNIT());
                 }
 
                 if (adminModels.getNombreEmpresa() != null) {
