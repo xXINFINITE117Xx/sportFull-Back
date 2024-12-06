@@ -65,6 +65,7 @@ public class AdminModels implements Serializable {
     @ElementCollection
     @CollectionTable(name = "servicios_generales", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "servicio")
+    @JsonIgnore
     private List<String> serviciosGenerales;
 
 
@@ -72,6 +73,7 @@ public class AdminModels implements Serializable {
     @ElementCollection
     @CollectionTable(name = "diasApertura", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "diaApertura")
+    @JsonIgnore
     private List<String> diasApertura ;
 
 
@@ -83,10 +85,12 @@ public class AdminModels implements Serializable {
 
 
     @OneToMany(mappedBy = "adminModels")
+    @JsonIgnore
     private List<ReservationsModels> reservations;
 
 
     @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<GestorModels> gestores = new ArrayList<>();
 
     @OneToMany(mappedBy = "adminModels")
