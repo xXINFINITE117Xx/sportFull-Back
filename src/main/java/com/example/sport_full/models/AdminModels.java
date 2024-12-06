@@ -62,39 +62,36 @@ public class AdminModels implements Serializable {
     private byte[] imgPerfil;
 
     // Nueva colección para los servicios generales
+    @JsonIgnore
     @ElementCollection
     @CollectionTable(name = "servicios_generales", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "servicio")
-    @JsonIgnore
     private List<String> serviciosGenerales;
 
 
     // Nueva columna para almacenar los días de la semana
+    @JsonIgnore
     @ElementCollection
     @CollectionTable(name = "diasApertura", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "diaApertura")
-    @JsonIgnore
     private List<String> diasApertura ;
 
 
-
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
-    @JsonIgnore
     private UserModels userModels;
 
-
-    @OneToMany(mappedBy = "adminModels")
     @JsonIgnore
+    @OneToMany(mappedBy = "adminModels")
     private List<ReservationsModels> reservations;
 
 
-    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
     @JsonIgnore
+    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
     private List<GestorModels> gestores = new ArrayList<>();
 
     @OneToMany(mappedBy = "adminModels")
-    @JsonIgnore
     private List<FieldModels> fields;
 
 
