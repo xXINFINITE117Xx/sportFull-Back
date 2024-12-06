@@ -1,5 +1,6 @@
 package com.example.sport_full.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -20,7 +21,7 @@ public class ReservationsModels {
 
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
-    @JsonIgnore
+    @JsonBackReference
     private AdminModels adminModels;
 
 

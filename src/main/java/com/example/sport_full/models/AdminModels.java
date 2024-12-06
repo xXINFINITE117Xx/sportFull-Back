@@ -78,10 +78,12 @@ public class AdminModels implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
+    @JsonManagedReference
     private UserModels userModels;
 
 
     @OneToMany(mappedBy = "adminModels")
+    @JsonManagedReference
     private List<ReservationsModels> reservations;
 
     @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
