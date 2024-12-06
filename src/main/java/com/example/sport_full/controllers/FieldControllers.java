@@ -50,7 +50,7 @@ public class FieldControllers {
             }
 
             AdminModels admin = user.getAdminModels();
-            List<String> adminServices = admin.getServiciosGenerales();
+            List<String> adminServices = (List<String>) admin.getServiciosGenerales();
             List<String> selectedServices = fieldModels.getServicios();
 
             // Validar que los servicios seleccionados pertenezcan a los servicios generales de la empresa
