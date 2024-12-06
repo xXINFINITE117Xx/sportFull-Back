@@ -83,7 +83,7 @@ public class AdminModels implements Serializable {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
     private UserModels userModels;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "adminModels")
     private List<ReservationsModels> reservations;
 
