@@ -156,7 +156,7 @@ public class AdminControllers {
 
 
                 if (adminModels.getServiciosGenerales() != null) {
-                    List<String> existingServicios = (List<String>) existingUser.getAdminModels().getServiciosGenerales();
+                    List<String> existingServicios = existingUser.getAdminModels().getServiciosGenerales();
 
                     for (String nuevoServicio : adminModels.getServiciosGenerales()) {
                         if (!existingServicios.contains(nuevoServicio)) {
@@ -166,7 +166,7 @@ public class AdminControllers {
                 }
 
                 if (adminModels.getDiasApertura() != null) {
-                    List<String> existingDias = (List<String>) existingUser.getAdminModels().getDiasApertura();
+                    List<String> existingDias = existingUser.getAdminModels().getDiasApertura();
 
                     for (String nuevoDia : adminModels.getDiasApertura()) {
                         if (!existingDias.contains(nuevoDia)) {
