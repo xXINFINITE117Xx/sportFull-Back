@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
@@ -156,7 +157,7 @@ public class AdminControllers {
 
 
                 if (adminModels.getServiciosGenerales() != null) {
-                    List<String> existingServicios = existingUser.getAdminModels().getServiciosGenerales();
+                    Set<String> existingServicios = existingUser.getAdminModels().getServiciosGenerales();
 
                     for (String nuevoServicio : adminModels.getServiciosGenerales()) {
                         if (!existingServicios.contains(nuevoServicio)) {
@@ -166,7 +167,7 @@ public class AdminControllers {
                 }
 
                 if (adminModels.getDiasApertura() != null) {
-                    List<String> existingDias = existingUser.getAdminModels().getDiasApertura();
+                    Set<String> existingDias = existingUser.getAdminModels().getDiasApertura();
 
                     for (String nuevoDia : adminModels.getDiasApertura()) {
                         if (!existingDias.contains(nuevoDia)) {

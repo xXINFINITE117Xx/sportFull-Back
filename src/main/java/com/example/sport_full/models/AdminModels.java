@@ -1,13 +1,10 @@
 package com.example.sport_full.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Where;
-
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,93 +17,73 @@ public class AdminModels implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false, unique = true)
     private String NIT;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false)
     private String nombreEmpresa;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false)
     private String telefonoEmpresa;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false, unique = true)
     private String emailEmpresa;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false)
     private String direccionEmpresa;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false, unique = true)
     private String CCpropietario;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false)
     private String telefonoPropietario;
 
-    @Column(nullable = true, unique = true)
     private String facebook;
-
-    @Column(nullable = true, unique = true)
     private String whatsApp;
-
-    @Column(nullable = true, unique = true)
     private String instagram;
 
     // Horarios de atención
-    @Column(nullable = true)
     private LocalTime horaApertura;
-
-    @Column(nullable = true)
     private LocalTime horaCierre;
 
     @Lob
-    @Column(name = "img_perfil", columnDefinition = "LONGBLOB", nullable = true)
+    @Column(name = "img_perfil", columnDefinition = "LONGBLOB")
     private byte[] imgPerfil;
 
-    // Nueva colección para los servicios generales
-
-    @ElementCollection
+    // Servicios generales
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "servicios_generales", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "servicio")
-    private List<String> serviciosGenerales;
+    private Set<String> serviciosGenerales = new HashSet<>();
 
+    // Días de apertura
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "dias_apertura", joinColumns = @JoinColumn(name = "empresa_id"))
+    @Column(name = "dia")
+    private Set<String> diasApertura = new HashSet<>();
 
-    // Nueva columna para almacenar los días de la semana
-
-    @ElementCollection
-    @CollectionTable(name = "diasApertura", joinColumns = @JoinColumn(name = "empresa_id"))
-    @Column(name = "diaApertura")
-    private List<String> diasApertura ;
-
-
-
-    @JsonIgnore
+    // Relación con UserModels
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
+    @JsonBackReference
     private UserModels userModels;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminModels")
+    // Relación con ReservationsModels
+    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ReservationsModels> reservations;
 
+    // Relación con GestorModels
+    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<GestorModels> gestores;
 
-
-    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
-    private List<GestorModels> gestores = new ArrayList<>();
-
-    @OneToMany(mappedBy = "adminModels")
+    // Relación con FieldModels
+    @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<FieldModels> fields;
 
-
-    // Getters y Setters
-
-
-    public List<String> getDiasApertura() {
-        return diasApertura;
-    }
-
-    public void setDiasApertura(List<String> diasApertura) {
-        this.diasApertura = diasApertura;
-    }
-
+    // Getters y setters
     public Long getId() {
         return id;
     }
@@ -195,48 +172,6 @@ public class AdminModels implements Serializable {
         this.instagram = instagram;
     }
 
-    public List<String> getServiciosGenerales() {
-        return serviciosGenerales;
-    }
-
-    public void setServiciosGenerales(List<String> serviciosGenerales) {
-        this.serviciosGenerales = serviciosGenerales;
-    }
-
-    public UserModels getUserModels() {
-        return userModels;
-    }
-
-    public void setUserModels(UserModels userModels) {
-        this.userModels = userModels;
-    }
-
-
-    public List<GestorModels> getGestores() {
-        return gestores;
-    }
-
-    public void setGestores(List<GestorModels> gestores) {
-        this.gestores = gestores;
-    }
-
-
-    public List<ReservationsModels> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<ReservationsModels> reservations) {
-        this.reservations = reservations;
-    }
-
-    public List<FieldModels> getFields() {
-        return fields;
-    }
-
-    public void setFields(List<FieldModels> fields) {
-        this.fields = fields;
-    }
-
     public LocalTime getHoraApertura() {
         return horaApertura;
     }
@@ -260,6 +195,52 @@ public class AdminModels implements Serializable {
     public void setImgPerfil(byte[] imgPerfil) {
         this.imgPerfil = imgPerfil;
     }
+
+    public Set<String> getServiciosGenerales() {
+        return serviciosGenerales;
+    }
+
+    public void setServiciosGenerales(Set<String> serviciosGenerales) {
+        this.serviciosGenerales = serviciosGenerales;
+    }
+
+    public Set<String> getDiasApertura() {
+        return diasApertura;
+    }
+
+    public void setDiasApertura(Set<String> diasApertura) {
+        this.diasApertura = diasApertura;
+    }
+
+    public UserModels getUserModels() {
+        return userModels;
+    }
+
+    public void setUserModels(UserModels userModels) {
+        this.userModels = userModels;
+    }
+
+    public List<ReservationsModels> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<ReservationsModels> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<GestorModels> getGestores() {
+        return gestores;
+    }
+
+    public void setGestores(List<GestorModels> gestores) {
+        this.gestores = gestores;
+    }
+
+    public List<FieldModels> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<FieldModels> fields) {
+        this.fields = fields;
+    }
 }
-
-
