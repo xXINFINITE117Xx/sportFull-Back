@@ -1,7 +1,6 @@
 package com.example.sport_full.models;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -45,9 +44,8 @@ public class UserModels implements Serializable {
     private ClientModels clientModels;
 
     // Relación opcional con AdminModels
-
+    @JsonIgnore
     @OneToOne(mappedBy = "userModels", cascade = CascadeType.ALL, optional = true)
-    @JsonBackReference
     private AdminModels adminModels;
 
     // Relación opcional con AdminModels
