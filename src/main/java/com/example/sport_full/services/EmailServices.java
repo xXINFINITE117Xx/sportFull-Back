@@ -22,7 +22,7 @@ public class EmailServices {
         message.setTo(email);
         message.setSubject("Verificación de Correo");
         message.setText("Para verificar tu correo, por favor haz clic en el siguiente enlace: "
-                + "https://magnificent-cajeta-379fff.netlify.appa/verify-email?token=" + verificationToken);
+                + "https://magnificent-cajeta-379fff.netlify.app/verify-email?token=" + verificationToken);
         mailSender.send(message);
     }
 }
