@@ -79,11 +79,11 @@ public class AdminModels implements Serializable {
 
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
     private UserModels userModels;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "adminModels",fetch = FetchType.LAZY)
     private List<ReservationsModels> reservations;
 
