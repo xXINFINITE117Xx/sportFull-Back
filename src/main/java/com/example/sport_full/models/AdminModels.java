@@ -62,7 +62,7 @@ public class AdminModels implements Serializable {
     private byte[] imgPerfil;
 
     // Nueva colección para los servicios generales
-    @JsonIgnore
+
     @ElementCollection
     @CollectionTable(name = "servicios_generales", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "servicio")
@@ -70,7 +70,7 @@ public class AdminModels implements Serializable {
 
 
     // Nueva columna para almacenar los días de la semana
-    @JsonIgnore
+
     @ElementCollection
     @CollectionTable(name = "diasApertura", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "diaApertura")
@@ -78,16 +78,17 @@ public class AdminModels implements Serializable {
 
 
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
     private UserModels userModels;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "adminModels")
     private List<ReservationsModels> reservations;
 
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
     private List<GestorModels> gestores = new ArrayList<>();
 
