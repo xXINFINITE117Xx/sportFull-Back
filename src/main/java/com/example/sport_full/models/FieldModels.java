@@ -24,10 +24,9 @@ public class FieldModels {
     private String estado;
 
 
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
-    @JsonIgnore
     private AdminModels adminModels;
 
 

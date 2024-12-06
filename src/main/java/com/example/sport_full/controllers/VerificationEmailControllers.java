@@ -4,12 +4,13 @@ import com.example.sport_full.services.VerificationsEmailServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "https://magnificent-cajeta-379fff.netlify.app")
 @RestController
-@RequestMapping
+@Service
 public class VerificationEmailControllers {
     @Autowired
     private VerificationsEmailServices userService;

@@ -1,9 +1,7 @@
 package com.example.sport_full.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Where;
 
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "Perfil_empresa")
 public class AdminModels implements Serializable {
 
@@ -65,33 +62,31 @@ public class AdminModels implements Serializable {
     private byte[] imgPerfil;
 
     // Nueva colección para los servicios generales
-
     @ElementCollection
     @CollectionTable(name = "servicios_generales", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "servicio")
-    @JsonIgnore
     private List<String> serviciosGenerales;
 
 
     // Nueva columna para almacenar los días de la semana
-
     @ElementCollection
     @CollectionTable(name = "diasApertura", joinColumns = @JoinColumn(name = "empresa_id"))
     @Column(name = "diaApertura")
-    @JsonIgnore
     private List<String> diasApertura ;
 
+
+
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
+    @JsonIgnore
     private UserModels userModels;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "adminModels")
     private List<ReservationsModels> reservations;
 
+
     @OneToMany(mappedBy = "adminModels", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<GestorModels> gestores = new ArrayList<>();
 
     @OneToMany(mappedBy = "adminModels")
