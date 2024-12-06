@@ -77,7 +77,7 @@ public class AdminModels implements Serializable {
     private List<String> diasApertura ;
 
 
-    @JsonIgnore
+
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", unique = true)
     private UserModels userModels;
