@@ -95,7 +95,6 @@ public class AdminModels implements Serializable {
     private List<GestorModels> gestores = new ArrayList<>();
 
     @OneToMany(mappedBy = "adminModels")
-    @JsonIgnore
     private List<FieldModels> fields;
 
 
